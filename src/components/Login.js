@@ -1,8 +1,10 @@
 import LoginFrm from './LoginFrm'
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
 
+    const navigate = useNavigate()
     var korisnici = [
         { username: 'Nikola', password: 'Nikolic', stanje: 125000 },
         { username: 'Nevena', password: 'Petrovic', stanje: 84000 },
@@ -15,19 +17,17 @@ function Login() {
         for (var i in korisnici) {
             if (korisnici[i].username === username && korisnici[i].password === password) {
                 alert('Dobro došli ' + username + " " + password);
-                <Navigate to={{
-                    pathname: '/stanje',
-                    state: { id: '123' }
-                }
-                }
-                />
+                navigate('/stanje')
             }
-
         }
+        alert('Molimo pokušajte ponovo!')
     }
+
+
 
     return (
         <div className="login">
+            <h1 id='login-naslov'>Login</h1>
             <LoginFrm login={login} />
         </div>
     );
